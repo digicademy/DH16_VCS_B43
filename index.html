@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+    <head>
+        <title>DH16 Kraków : B43 : Visualising Cultural Spheres – Virtual Tours and Epigraphical Data</title>
+        <link href="css/reset.css" rel="stylesheet" />
+        <meta name="author" content="co-authored by Max Grüntgens, Anna Neovesky">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=1024" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link rel="shortcut icon" href="images/favicon2.png" />
+        <link rel="apple-touch-icon" href="css/apple-touch-icon.png" />
+
+        <!-- code highlighting -->
+        <link href="css/highlight.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <!-- theme stylesheet -->
+        <link href="css/style.css" rel="stylesheet" />
+
+        <!-- jquery -->
+        <script type="text/javascript" src="js/jquery.1.8.min.js"></script>
+
+        <!-- greuler -->
+        <script src="js/d3.v3.min.js"></script>
+        <script src="js/cola.v3.js"></script>
+        <script src="js/greuler.min.js"></script>
+
+        <!-- codemirror for sparql -->
+        <link rel="stylesheet" href="css/codemirror.css" />
+        <link rel="stylesheet" href="css/sparqlcolors.css" />
+        <script src="js/codemirror.js"></script>
+        <script src="js/matchbrackets.js"></script>
+        <script src="js/sparql.js"></script>
+    </head>
+    <body>
+
+<!--  START -->
+<!-- wraps whole presentation -->
+<div class="fallback-message">
+        <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+        <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+    </div>
+    <div id="impress">
+
+        <div class="step">
+            <h4>Digital Humanities 2016, Kraków</h4>
+
+            <h1>Visualising Cultural Spheres</h1>
+
+            <h2>Virtual Tours and Epigraphical Data</h2>
+            <h4>B43 : Short Paper Session : Visualizing 3</h4>
+
+            <h3 style="margin-top: 1em; font-size: 30px;">
+                <strong>Max Grüntgens (ADWL Mainz) | Anna Neovesky (ADWL Mainz) <br>
+                    <img src="https://pbs.twimg.com/profile_images/2689776011/79d319d590925b1e64631d7060d375dd_400x400.png" alt="Twitter" width="30" />
+                    <a href="http://www.digitale-akademie.de/" title="Institutional website">www.digitale-akademie.de</a> |
+                    <img src="https://upload.wikimedia.org/wikipedia/en/9/9f/Twitter_bird_logo_2012.svg" alt="Twitter" width="30" />
+                    <a href="https://twitter.com/digicademy" title="The Digital Academy of the Academy of Sciences and Literatur on Twitter">@digicademy</a> |
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="Twitter" width="30" />
+                    <a href="https://github.com/digicademy/mainzed_lunch_lectures_markup" title="Presentation and code on GitHub">digicademy</a>
+                    </strong>
+                    <hr>
+                    <span style="font-size: 17.5px;">
+                    Released under
+                    <a href="https://creativecommons.org/licenses/by/4.0/" title="Licensed under CC BY 4.0">CC BY 4.0</a> (Max Grüntgens, Anna Neovesky and Torsten Schrade; Digitale Akademie)
+                    </span>
+            </h3>
+        </div>
+
+        <div class="step">
+            <h2>Table of Contents</h2>
+
+            <ol>
+                <li>Background Information <a href="#bg" style="font-size: 25px"">[&gt;]</a>
+                <ul>
+                <li style="list-style-type:lower-latin; margin-top:-0.7em;">Administrative and Institutional Background <a href="#bg1" style="font-size: 25px"">[&gt;]</a></li>
+                <li style="list-style-type:lower-latin;">Project Specific Background <a href="#bg2" style="font-size: 25px"">[&gt;]</a></li>
+                <li style="list-style-type:lower-latin;">Technological Background <a href="#bg3" style="font-size: 25px"">[&gt;]</a></li>
+                </ul>
+                </li>
+                <li>Execution <a href="#ex" style="font-size: 25px"">[&gt;]</a>
+                <ul>
+                <li style="list-style-type:lower-latin; margin-top:-0.7em;">Software <a href="#ex1" style="font-size: 25px"">[&gt;]</a></li>
+                <li style="list-style-type:lower-latin;">Input <a href="#ex2" style="font-size: 25px"">[&gt;]</a></li>
+                <li style="list-style-type:lower-latin;">Example <a href="#ex3" style="font-size: 25px"">[&gt;]</a></li>
+                </ul>
+                </li>
+                <li>Outlook <a href="#ol" style="font-size: 25px"">[&gt;]</a>
+                <ul>
+                <li style="list-style-type:lower-latin; margin-top:-0.7em;">Cultural Programming <a href="#ol1" style="font-size: 25px"">[&gt;]</a></li>
+                <li style="list-style-type:lower-latin;">Reusability and a Culture of Openness <a href="#ol2" style="font-size: 25px"">[&gt;]</a></li>
+                <li style="list-style-type:lower-latin;">Links and Resources <a href="#ol3" style="font-size: 25px"">[&gt;]</a></li>
+                </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="step" id="bg">
+            <h1>01</h1>
+            <h2>Background Information</h2>
+        </div>
+
+        <div class="step" id="bg1">
+            <h2>Administrative and Institutional Background</h2>
+            <hr>
+            <h3>The Academy of Sciences and Literature in Mainz …</h3>
+            <ul>
+                <li>… hosts <strong>diverse and heterogenous projects</strong> throughout virtually all fields of the Humanities.</li>
+                <li>… maintains projects with a <strong>running time</strong> ranging from approx. <strong>12 years to 30 years</strong>.</li>
+                <li>… thus provides <strong>huge amounts of scholarly research data and meta data</strong> in printed as well as digital forms and formats.</li>
+                <li>… and her sister academies therefore <strong>create spaces for basic research in the Humanities</strong> and thus take an integral part in <strong>fueling scholarly research</strong> as a whole.</li>
+            </ul>
+        </div>
+
+        <div class="step" id="bg2">
+            <h2>Project Specific Background</h2>
+            <hr>
+            <h3>The exemplary project German Inscriptions (GI/DI) …</h3>
+            <ul>
+                <li>… accumulates and redacts <strong>medieval and early modern inscriptions</strong> found within the borders of the FRG, the RA and South Tyrol.</li>
+                <li>… compiles volumes focussed on a <strong>administrative region, a city, or building</strong>.</li>
+                <li>… currently provides <strong>90 volumes in print</strong>.</li>
+                <li>… currently provides more than <strong>40 volumes in a digitized form</strong>.</li>
+                <li>… the data provided ranges from <strong>text data</strong> over <strong>spatial and scholarly meta data</strong>, and <strong>photographic images</strong> to <strong>index data</strong>.</li>
+            </ul>
+            <h3><em>Thus the project provides allmost all of the data needed to power an undefined number of visualizations in regard to illustrative materials</em>.</h3>
+        </div>
+
+        <div class="step">
+            <h2>Project Specific Background </h2>
+            <hr>
+            <h3>Other scholarly projects …</h3>
+            <ul>
+                <li>… likewise produce a <strong>diverse set of research data and meta data</strong>.</li>
+                <li>… also focus on on one or more specific <strong>scholarly topics</strong>, <strong>geographic locations</strong>, <strong>conceptual entities</strong>.</li>
+                <li>… are currently at the beginning or in the midst of a <strong>digitizing</strong> or <strong>data furbishing lifecycle</strong>.</li>
+                </ul>
+        </div>
+
+
+         <div class="step">
+            <h2>Project Specific Background </h2>
+            <hr>
+            <h3>Other scholarly projects …</h3>
+            <ul>
+                <li>… are in this moment or in the near future able or coerced to <strong>rearrange</strong> their currently fixed <strong>set of data</strong> and metada. Hereby gaining the possibility to structure their data in a more modular and flexible way.</li>
+                <li>… <strong>often lack</strong> the technological as well as human <strong>resources</strong> to create a complex visualization from scratch.</li>
+            </ul>
+            <h3><em>Scholarly research projects may differ significantly in regard to their research question, and their methodological, or epistemological approaches. The research data produced in textual as well as eidetic form, however, can be regarded as analogous—at least in my opinion and from a conceptual point of view.</em></h3>
+        </div>
+
+        <div class="step" id="bg3">
+            <h2>Technological Background</h2>
+            <hr>
+            <h3>Technological and conceptual prerequisites are …</h3>
+            <ul>
+                <li>… serving the research data and meta data in <strong>easy-to harvest</strong> as well as <strong>easy-to-use formats</strong>, e.g. in TEI-XML or JSON.</li>
+                <li>… serving the data in a <strong>modularized</strong> way</strong> oriented towards microservice and service oriented architecture paradigms.</li>
+                <li>… providing easy-to-use interfaces based on paradigms like <strong>REST</strong>.</li>
+                <li>… providing a <strong>secure legal context</strong> for reuse, adaption, and mixing of data. Thus it is recommended—at least for publicly funded research in my opinion—to serve the data under an as-open-as-possible licence, e.g. CC BY or CC 0.</li>
+            </ul>
+        </div>
+
+
+
+
+
+
+
+        <div class="step" id="ex">
+            <h1>02</h1>
+            <h2>Execution</h2>
+        </div>
+
+        <div class="step" id="ex1">
+
+            <h2>Software </h2>
+<hr>
+            <ul>
+                <li>HTML5 &amp; CSS3</li>
+                <li>JavaScript</li>
+                <li>JSON</li>
+                <li>WebGL</li>
+                <li>GitHub</li>
+            </ul>
+            <h3><em>The chosen software should as a consequence represent modern, developed web standards, for the simple reason that they provide straightforward working conditions for the developers as well as a well-rounded and familiar user experience.</em></h3>
+        </div>
+
+        <div class="step" id="ex2">
+
+            <h2>Input</h2>
+            <hr>
+            <h3>Input data are …</h3>
+            <ul>
+                <li style="list-style-type:none;">… a <span class="hidden_img"><a><img src="images/json.png" />JSON file</a></span> for configuration, file distribution and data exchange.</li>
+                <li style="list-style-type:none;">… different types of <span class="hidden_img"><a><img src="images/in.png" />files</a></span>, such as …
+                <ul><li style="list-style-type:none;">… image files, panoramic photos as well as groundplans.</li>
+                <li style="list-style-type:none;">… text files containing for example illustrative or scholarly texts.</li>
+                <li style="list-style-type:none;">… sound and video files.</li></ul>
+                </li>
+                <li style="list-style-type:none;">… organised in a concise and easy to grasp <span class="hidden_img"><a><img src="images/fs.png" />folder structure</a></span>.</li>
+            </ul>
+<h3><em>Adaption of this core JSON file makes it possible to create a custom virtual tour. All the cultural institution has to add are suitable images, positions and texts which can for example be received via data interfaces and web APIs. The generic virtual tour and the user manual are available on <a href="https://github.com/digicademy/virtualTour">GitHub</a>.
+</em></h3>
+        </div>
+
+       <div class="step" id="ex3">
+
+            <h2>Example</h2>
+            <hr>
+<ul>
+    <li><a href="http://www.inschriften.net/hildesheim/rundgang/index.html">Virtual Tour St. Michaelis / Hildesheim</a></li>
+</ul>
+        </div>
+
+
+        <div class="step" id="ol">
+            <h1>03</h1>
+            <h2>Outlook</h2>
+        </div>
+
+        <div class="step" id="ol1">
+
+            <h2>Cultural Programming </h2>
+
+<hr>
+            <h3><strong>Cultural Coding === Generic Coding </strong></h3>
+            <hr>
+            <h3><em>Creating digital code in the public sector is by necessity an <strong>open source process</strong>.</h3>
+            <h3>In contrast to coding in the realm of the competitive private sector, in the cultural realm it is not—and must not be—imperative to shield digital products, project data and know-how.</h3>
+            <h3>Open source software <strong>enables people</strong> from outside the project to reuse and adapt the outcome as well as to contribute. A generic approach increases the <strong>reusability</strong> of the code and the application.</em></h3>
+        </div>
+
+
+
+
+               <div class="step" id="ol2">
+
+            <h2>Reusability and a Culture of Openness</h2>
+<hr>
+<h3>Thus this emerging Culture of Openness within and by the DH community has to be promoted further by usage of …</h3>
+            <ul>
+                <li>… common web standards.</li>
+                <li>… reuse and advancement of earlier programm packages and libraries.</li>
+                <li>… redistributing advancements to the community via social programming portals, like for example Github.</li>
+                <li>… serving of data and meta data by means of open intefaces, like REST.</li>
+                <li>… creating secure legal spaces by usage of as-open-as-possible licenses.</li>
+            </ul>
+        </div>
+
+
+        <div class="step" id="ol3">
+
+            <h2>Links and Resources</h2>
+
+            <ul>
+                <li><a href="https://github.com/impress/impress.js">Impress.js</a> (Präsentation)</li>
+                <li><a href="https://highlightjs.org/">hightlight.js</a> (Syntax Highlighting)</li>
+            </ul>
+
+            <p>Presentation: <a href="https://github.com/digicademy/mainzed_lunch_lectures_markup">GitHub</a></p>
+            <p>Virtual Tour: <a href="https://github.com/digicademy/virtualTour">GitHub</a></p>
+
+            <p>
+                License: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, Max Grüntgens, Anna Neovesky and Torsten Schrade; Digitale Akademie
+            </p>
+
+        </div>
+    </div>
+<!--  END -->
+
+<!-- include impress.js -->
+        <script>
+        if ("ontouchstart" in document.documentElement) {
+            document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+        }
+        </script>
+        <script src="js/impress.js"></script>
+        <script>impress().init();</script>
+    </body>
+</html>
